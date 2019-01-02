@@ -1,7 +1,12 @@
+import angular from 'angular';
+import ngResource from 'angular-resource';
+import nvd3 from 'angular-nvd3';
+import template from './visualizer.tpl.html';
+import { BlockData, SegmentData, AnalogSignalData } from './services';
 
+var neoVisualizer = angular.module('neoVisualizer', ['ng', ngResource, nvd3]);
 
-angular.module('neo-visualizer', ['ng', 'ngResource', 'nvd3'])
-
+neoVisualizer
 .controller('MainCtrl', function($scope, BlockData, SegmentData, AnalogSignalData, Graphics) {
     console.log($scope.source);
     if (!$scope.height) {
@@ -301,7 +306,8 @@ angular.module('neo-visualizer', ['ng', 'ngResource', 'nvd3'])
         restrict: 'EA',
         replace: true,
         transclude: true,
-        templateUrl: '/src/visualizer.tpl.html',
+        //templateUrl: '/src/visualizer.tpl.html',
+        template,
         scope: { source: '@', height: '@', iotype: '@' },
         controller: 'MainCtrl'
     }
