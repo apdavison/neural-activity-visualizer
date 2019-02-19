@@ -29,7 +29,7 @@ def _get_file_from_url(request):
 
         # if we have a text file, try to download the accompanying json file
         name, ext = os.path.splitext(filename)
-        if ext in io.AsciiSignalIO.extensions:
+        if ext[1:] in io.AsciiSignalIO.extensions:  # ext has a leading '.'
             metadata_filename = filename.replace(ext, "_about.json")
             metadata_url = url.replace(ext, "_about.json")
             try:
