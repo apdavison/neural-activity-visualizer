@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="neo-visualizer">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>Example of plotting multiple signals</title>
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <link rel="stylesheet" href="node_modules/nvd3/build/nv.d3.css">
+
+    <script type="text/javascript" src="node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="node_modules/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="node_modules/d3/d3.js"></script>
+    <script type="text/javascript" src="node_modules/nvd3/build/nv.d3.js"></script>
+    <script type="text/javascript" src="node_modules/angular-nvd3/dist/angular-nvd3.js"></script>
+    <script src="src/example4.js"></script>
+    <script type="text/javascript" src="src/services.js"></script>
+
+</head>
+
+  <body ng-controller="MainCtrl">
+
+    <nvd3 options="options" data="data"></nvd3>
+
+  </body>
+
+</html>
