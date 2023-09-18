@@ -96,7 +96,9 @@ class AnalogSignal(BaseModel):
             "times_dimensionality": str(signal.t_start.units.dimensionality),
             "values_units": str(signal.units.dimensionality),
         }
-        if down_sample_factor in (None, ""):
+        try:
+            down_sample_factor = int(down_sample_factor)
+        except (ValueError, TypeError):
             down_sample_factor = 1
         if isinstance(signal, neo.AnalogSignal):
             data["sampling_period"] = (
