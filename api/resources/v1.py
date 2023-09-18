@@ -137,7 +137,7 @@ async def get_analogsignal_data(
         ),
     ] = None,
     down_sample_factor: Annotated[
-        PositiveInt,
+        PositiveInt | None,
         Query(
             description=(
                 "Factor by which data should be downsampled prior to loading. "
