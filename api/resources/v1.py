@@ -144,7 +144,7 @@ async def get_analogsignal_data(
                 "Useful for faster loading of large files. Accepts positive integer values."
             )
         ),
-    ] = 1,
+    ] = None,
 ) -> AnalogSignal:
     """Get an analog signal from a given segment, including both data and metadata."""
     try:
