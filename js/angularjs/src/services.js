@@ -7,7 +7,7 @@ angular.module('neo-visualizer')
 .factory('BlockData', ['$resource', 'baseURL',
     function($resource, baseURL) {
         return $resource(baseURL + 'blockdata/', {}, {
-            get: { method: 'GET', params: { format: 'json' }, isArray: false },
+            get: { method: 'GET', isArray: false },
         })
     }
 ])
@@ -15,7 +15,7 @@ angular.module('neo-visualizer')
 .factory('SegmentData', ['$resource', 'baseURL',
     function($resource, baseURL) {
         return $resource(baseURL + 'segmentdata/', {}, {
-            get: { method: 'GET', params: { format: 'json' }, isArray: false },
+            get: { method: 'GET', isArray: false },
         })
     }
 ])
@@ -23,7 +23,7 @@ angular.module('neo-visualizer')
 .factory('AnalogSignalData', ['$resource', 'baseURL',
     function($resource, baseURL) {
         return $resource(baseURL + 'analogsignaldata/', {}, {
-            get: { method: 'GET', params: { format: 'json' }, isArray: false },
+            get: { method: 'GET', isArray: false },
         })
     }
 ])
@@ -31,7 +31,7 @@ angular.module('neo-visualizer')
 .factory('SpikeTrainData', ['$resource', 'baseURL',
     function($resource, baseURL) {
         return $resource(baseURL + 'spiketraindata/', {}, {
-            get: { method: 'GET', params: { format: 'json' }, isArray: false },
+            get: { method: 'GET', isArray: false },
         })
     }
 ])
