@@ -137,14 +137,14 @@ async def get_analogsignal_data(
         ),
     ] = None,
     down_sample_factor: Annotated[
-        PositiveInt | None,
+        PositiveInt | None | str,
         Query(
             description=(
                 "Factor by which data should be downsampled prior to loading. "
                 "Useful for faster loading of large files. Accepts positive integer values."
             )
         ),
-    ] = None,
+    ] = 1,
 ) -> AnalogSignal:
     """Get an analog signal from a given segment, including both data and metadata."""
     try:
