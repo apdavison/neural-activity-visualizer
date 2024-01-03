@@ -42,7 +42,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
                 var graph_data = [];
 		var xs = data.times_dimensionality;
                 var ys = data.values_units;
-                if (typeof data.times === "undefined") {
+                if (data.times == null) {
                     data.times = Graphics.get_graph_times(data);
                 }
                 data.values.forEach(
@@ -125,7 +125,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
                     ys = signals[0].values_units;
                     signals.forEach(
                         function(signal, j) {
-                            if (typeof signal.times === "undefined") {
+                            if (signal.times == null) {
                                 signal.times = Graphics.get_graph_times(signal);
                             }
                             var t_start = signal.times[0];
@@ -234,7 +234,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
                         ys = signals[0].values_units;
                         signals.forEach(
                             function(signal, j) {
-                                if (typeof signal.times === "undefined") {
+                                if (signal.times == null) {
                                     signal.times = Graphics.get_graph_times(signal);
                                 }
                                 var t_start = signal.times[0];
@@ -493,7 +493,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
     $scope.switchSpikeTrain = function() {
         $scope.dataLoading = true;
         $scope.graphType = "spiketrains";
-        if ($scope.block.segments[$scope.currentSegmentId].spiketrains[0].times == undefined) {
+        if ($scope.block.segments[$scope.currentSegmentId].spiketrains[0].times == null) {
             console.log("Fetching data for spike trains in segment #" + $scope.currentSegmentId + " in file " + $scope.source);
             cache_spiketrains[$scope.currentSegmentId] = [];
             SpikeTrainData.get({url: $scope.source,
@@ -576,7 +576,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
         var initGraph = function(raw_data) {
             console.log("initGraph");
             return new Promise(function(resolve, reject) {
-                if (typeof raw_data.times === "undefined") {
+                if (raw_data.times == null ) {
                     raw_data.times = get_graph_times(raw_data);
                 }
                 var data = []
