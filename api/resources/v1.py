@@ -31,7 +31,7 @@ async def info():
     return {
         "title": title,
         "description": description.strip(),
-        "version": 1.7,
+        "version": 2.0,
     }
 
 
