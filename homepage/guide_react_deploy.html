@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="icon" href="favicon/Favicon_32x32.png">
+    <link rel="apple-touch-icon" href="favicon/Favicon_32x32.png">
+    <title>Neural Activity Visualizer - Guide - React Deploy</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+
+<body>
+    <div>
+        <div class="container"><br>
+            <div class="box rounded centered" style="margin-top: 5px; padding-top: 0.75em; padding-bottom: 0.75em;"><a
+                    href="https://ebrains.eu/" target="_blank" rel="noopener noreferrer"
+                    class="waves-effect waves-light" style="text-align: center; color: black;">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td style="padding-top: 0px; padding-bottom: 0px;"><img class="ebrains-icon-small"
+                                        src="./imgs/ebrains_logo.svg" alt="EBRAINS logo" style="height: 60px;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </a>
+                <h5 class="title-style">Neural Activity Visualizer</h5>
+            </div>
+
+            <h5 style="text-align: center; line-height: 2; font-weight: bolder;">Deploying the Neural Activity Visualizer React demo app</h5>
+
+            <div class="text" style="margin: 15px 35px 15px 35px;">
+                This guide will walk you through deploying the Neural Activity Visualizer ReactJS demo app. The final result will be similar to the app running on <a href="/react" target="_blank" rel="noopener noreferrer">this page</a>. This guide will require you to have a GitHub account. If you don't already have one, you can create it for free <a href="https://github.com/signup?source=login" target="_blank" rel="noopener noreferrer">here</a>.
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 1:</h5>
+            <div class="row">
+                Open the GitHub repository of this project. The URL is:  <a href="https://github.com/NeuralEnsemble/neo-viewer" target="_blank" rel="noopener noreferrer">https://github.com/NeuralEnsemble/neo-viewer</a>. 
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 2:</h5>
+            <div class="row">
+                To have greater freedom to effect changes in our app, instead of using this parent repository, we shall first create a fork of this project. This creates a copy of the project under our own account. To do so, click on 'Fork' as indicated below:
+                <img src="./imgs/screenshots/react_demo/img_01.png" alt="Fork button" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 3:</h5>
+            <div class="row">
+                If you are not already logged into GitHub, you will be asked to login. Please enter your credentials and sign in.
+                <img src="./imgs/screenshots/react_demo/img_03.png" alt="GitHub login" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 4:</h5>
+            <div class="row">
+                You will then be redirected to the page shown below. Here, you can select the account under which you want to fork the project. If you have multiple accounts, you can select the one you want to use from the dropdown menu. You can also specify a different name for this forked repository, but for now we shall use the existing name. You can leave the other options as displayed and click on the 'Create fork' button.
+                <img src="./imgs/screenshots/react_demo/img_04.png" alt="Create fork" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 5:</h5>
+            <div class="row">
+                In a few moments you will be automatically redirected to your fork of the project. As seen below, the URL will be like this: <code>https://github.com/GitHub_Username/Repo_name</code>.
+                <img src="./imgs/screenshots/react_demo/img_05.png" alt="Forked repo" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 6:</h5>
+            <div class="row">
+                Now we are ready to deploy the app. We shall use a website called <a href="https://netlify.com" target="_blank" rel="noopener noreferrer">Netlify</a> to host our app. If you don't already have an account, you can create one for free <a href="https://app.netlify.com/signup" target="_blank" rel="noopener noreferrer">here</a>. It is very easy to create an account, and you can sign up using your GitHub account. Click on the 'Log in' button as shown below:
+                <img src="./imgs/screenshots/react_demo/img_06.png" alt="Visit Netlify" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 7:</h5>
+            <div class="row">
+                Login to Netlify with your GitHub account:
+                <img src="./imgs/screenshots/react_demo/img_07.png" alt="Netlify login" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 8:</h5>
+            <div class="row">
+                On logging in you will see your account's overview page. Click on the 'Add new site' button on the middle of the page:
+                <img src="./imgs/screenshots/react_demo/img_09.png" alt="Netlify homepage" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 9:</h5>
+            <div class="row">
+                This will show you a few methods for adding a new site. Click on 'Import an existing project' from the drop-down list:
+                <img src="./imgs/screenshots/react_demo/img_10.png" alt="Add new site" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 10:</h5>
+            <div class="row">
+                On the next page, select 'Deploy with GitHub':
+                <img src="./imgs/screenshots/react_demo/img_12.png" alt="Deploy with GitHub" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 11:</h5>
+            <div class="row">
+                This page will show you a list of your GitHub repositories that Netlify currently has access to. You might not see your forked repository here at the moment. If this is the first time you are using Netlify, this list might be empty. To fix this, click on the 'Configure the Netlify app on GitHub' link on the bottom of the page, to give Netlify access to your forked GitHub repository. 
+                <img src="./imgs/screenshots/react_demo/img_13.png" alt="Configure Netlify GitHub" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 12:</h5>
+            <div class="row">
+                This will open a new tab in your browser. You might see several accounts listed here, that you have access to on GitHub. Select the account under which you forked the project in step 4 above.
+                <img src="./imgs/screenshots/react_demo/img_16.png" alt="Select account for configure" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 13:</h5>
+            <div class="row">
+                You will then be asked to grant Netlify access to your repositories. 
+                <img src="./imgs/screenshots/react_demo/img_17.png" alt="Install all repos" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 14:</h5>
+            <div class="row">
+                By default, 'All repositories' are selected. If you are okay with this, click on the 'Install' button. If you want to be more selective, click on the 'Only select repositories' button. This will give you a drop-down list of all your repositories. Select the name of the repository you specified in step 4.
+                <img src="./imgs/screenshots/react_demo/img_18.png" alt="Install selected repos" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 15:</h5>
+            <div class="row">
+                Once selected, you will see the repository listed. Click on the 'Install' button.
+                <img src="./imgs/screenshots/react_demo/img_19.png" alt="Install Netlify" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 16:</h5>
+            <div class="row">
+                You will now be redirected back to the same page as in step 11. You should now see your forked repository listed. Click on the repository name (or anywhere on that row) to proceed.
+                <img src="./imgs/screenshots/react_demo/img_21.png" alt="Available repos" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 17:</h5>
+            <div class="row">
+                You will be taken to this page where you can specify the deployment configuration:
+                <img src="./imgs/screenshots/react_demo/img_22.png" alt="Deploy homepage" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 18:</h5>
+            <div class="row">
+                Let us first assign a name for our upcoming site. Here, I am setting this to <code>neoviewerdemo</code> which would set the URL for the app as: <code>https://neoviewerdemo.netlify.app</code>. You can set this to any name you like, as long as it is not already taken.
+                <img src="./imgs/screenshots/react_demo/img_23.png" alt="Assign site name" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 19:</h5>
+            <div class="row">
+                Scroll further down the page, and set the following values for the build settings:
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Base directory:</td>
+                            <td><code>js/react/</code></td>
+                        </tr>
+                        <tr>
+                            <td>Build command:</td>
+                            <td><code>npm update && npm run build-lib && npm run i-all && npm run build-demo</code></td>
+                        </tr>
+                        <tr>
+                            <td>Publish directory:</td>
+                            <td><code>js/react/demo/build</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+                Leave the rest of the options as they are.
+                <img src="./imgs/screenshots/react_demo/img_24.png" alt="Build settings" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 20:</h5>
+            <div class="row">
+                Finally, click on 'Deploy SITENAME' (i.e. Deploy neoviewerdemo in this case) at the bottom of the page to deploy the app.
+                <img src="./imgs/screenshots/react_demo/img_25.png" alt="Deploy app" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 21:</h5>
+            <div class="row">
+                This will take a few minutes to complete. You shall see the deploy status go through various stages, such as 'Starting Up', 'Building', and so on. Once completed successfully, the status will be set as 'published', as shown below. You can now visit the URL of your site (in this case: https://neoviewerdemo.netlify.app) to see the deployed app.
+                <img src="./imgs/screenshots/react_demo/img_27.png" alt="Deploy complete" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 22:</h5>
+            <div class="row">
+                The deployed app is now available at the specified URL. You can share this URL with others to show them your app. You can also make changes to the app, via changes to your fork of the project's GitHub directory, and redeploy it at any time.
+                <img src="./imgs/screenshots/react_demo/img_28.png" alt="Visit app" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 23:</h5>
+            <div class="row">
+                As you scroll down, you see the familiar visualization example that was seen in the demo app:
+                <img src="./imgs/screenshots/react_demo/img_29.png" alt="Use app" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <br/><br/>
+              
+            <div class="rainbow-row">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <p class="text" style="margin: 25px 10px 10px 10px;">This project has received funding from the European
+                Union’s
+                Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreements No.
+                785907 and
+                No. 945539 (Human Brain Project SGA2 and SGA3).</p>
+            <p class="text" style="margin: 10px 10px 40px 10px;">If you encounter any problems, <a
+                    href="https://github.com/NeuralEnsemble/neo-viewer/issues/new" target="_blank"
+                    rel="noopener noreferrer">please let us know.</a></p>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="icon" href="favicon/Favicon_32x32.png">
+    <link rel="apple-touch-icon" href="favicon/Favicon_32x32.png">
+    <title>Neural Activity Visualizer - Guide - Angular Usage</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+
+<body>
+    <div>
+        <div class="container"><br>
+            <div class="box rounded centered" style="margin-top: 5px; padding-top: 0.75em; padding-bottom: 0.75em;"><a
+                    href="https://ebrains.eu/" target="_blank" rel="noopener noreferrer"
+                    class="waves-effect waves-light" style="text-align: center; color: black;">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td style="padding-top: 0px; padding-bottom: 0px;"><img class="ebrains-icon-small"
+                                        src="./imgs/ebrains_logo.svg" alt="EBRAINS logo" style="height: 60px;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </a>
+                <h5 class="title-style">Neural Activity Visualizer</h5>
+            </div>
+
+            <h5 style="text-align: center; line-height: 2; font-weight: bolder;">Using the Neural Activity Visualizer Angular component</h5>
+
+            <div class="text" style="margin: 15px 35px 15px 35px;">
+                This guide will walk you through deploying the Neural Activity Visualizer AngularJS component. We shall develop a very simple web page that will allow us to visualize electrophysiology data files in any format supported by the Neo library. You can then expand on this page to suit your needs. We shall also demonstrate how you can deploy this app on a web server.
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 1:</h5>
+            <div class="row">
+                Create a new directory. Here, I am creating one named 'NeoViewer':
+                <img src="./imgs/screenshots/angular_demo/img_01.png" alt="Create new folder" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 2:</h5>
+            <div class="row">
+                Inside this directory create a new file named 'index.html':
+                <img src="./imgs/screenshots/angular_demo/img_02.png" alt="Create file" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+
+            <h5 style="line-height: 49.2px">Step 3:</h5>
+            <div class="row">
+                Copy-paste the following code into the 'index.html' file:
+                <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular-resource.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.9/angular-nvd3.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.51.1/plotly.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.jsdelivr.net/gh/NeuralEnsemble/neo-viewer@master/js/angularjs/src/visualizer.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.jsdelivr.net/gh/NeuralEnsemble/neo-viewer@master/js/angularjs/src/services.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div id=&quot;root&quot;&gt;
+        &lt;div class=&quot;container&quot; ng-app=&quot;neo-visualizer&quot;&gt;
+            &lt;div ng-controller=&quot;URLFormController&quot;&gt;
+                &lt;br /&gt;
+                &lt;form class=&quot;form-inline angular-container&quot;&gt;
+                    &lt;div class=&quot;form-group&quot;&gt;
+                        &lt;label for=&quot;dataFileURL&quot;&gt;URL of data file:&lt;/label&gt;
+                        &lt;input type=&quot;text&quot; class=&quot;form-control&quot; ng-model=&quot;dataFileURL&quot; id=&quot;dataFileURL&quot;
+                            placeholder=&quot;enter data file URL here&quot; style=&quot;width: 600px;&quot;&gt;
+                    &lt;/div&gt;
+                &lt;/form&gt;
+                &lt;br /&gt;&lt;br /&gt;
+                &lt;div class=&quot;row angular-container&quot;&gt;
+                    &lt;visualizer-view ng-if=&quot;dataFileURL&quot; source=&quot;{{dataFileURL}}&quot; height=300&gt;
+                    &lt;/visualizer-view&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;   </code></pre>
+
+                <img src="./imgs/screenshots/angular_demo/img_03.png" alt="Add code to file" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+
+            <h5 style="line-height: 49.2px">Step 4:</h5>
+            <div class="row">
+                Your visualizer is ready! You can now open the 'index.html' file in your web browser. You will see something like this:
+                <img src="./imgs/screenshots/angular_demo/img_04.png" alt="See page locally" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+
+            <h5 style="line-height: 49.2px">Step 5:</h5>
+            <div class="row">
+                You can paste a URL of a data file in the input box. Here is an example URL we will use:
+                <br/>
+                <code>https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf</code>
+                <br/>
+                The visualizer will load and display the metadata contained in the file:
+                <img src="./imgs/screenshots/angular_demo/img_05.png" alt="Enter file URL" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+
+            <h5 style="line-height: 49.2px">Step 6:</h5>
+            <div class="row">
+                You can select the signal of interest, and the visualizer will display the signal:
+                <img src="./imgs/screenshots/angular_demo/img_06.png" alt="Select signal and view plot" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+
+            <h5 style="line-height: 49.2px">Step 7:</h5>
+            <div class="row">
+                Next we shall see how we can deploy this app on a web server. For this example, we shall deploy it on a website called <a href="https://netlify.com" target="_blank" rel="noopener noreferrer">Netlify</a>. If you don't already have an account, you can create one for free <a href="https://app.netlify.com/signup" target="_blank" rel="noopener noreferrer">here</a>. It is very easy to create an account, and you can sign up using your GitHub account. Click on the 'Log in' button as shown below:
+                <img src="./imgs/screenshots/angular_demo/img_07.png" alt="Open Netlify" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+
+            <h5 style="line-height: 49.2px">Step 8:</h5>
+            <div class="row">
+                Login to Netlify with your GitHub account:
+                <img src="./imgs/screenshots/angular_demo/img_08.png" alt="Netlify login" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+
+            <h5 style="line-height: 49.2px">Step 9:</h5>
+            <div class="row">
+                On logging in you will see your account's overview page. Click on the 'Add new site' button on the middle of the page:
+                <img src="./imgs/screenshots/angular_demo/img_09.png" alt="Add new site" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+
+            <h5 style="line-height: 49.2px">Step 10:</h5>
+            <div class="row">
+                This will show you a few methods for adding a new site. Click on 'Deploy manually' from the drop-down list:
+                <img src="./imgs/screenshots/angular_demo/img_10.png" alt="Deploy manually" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+
+            <h5 style="line-height: 49.2px">Step 11:</h5>
+            <div class="row">
+                This will bring you to the page shown below. This allows you to drag and drop your project folder to upload your project folder. Drag and drop your 'NeoViewer' folder (created in step 1) here:
+                <img src="./imgs/screenshots/angular_demo/img_11.png" alt="Drag and drop folder" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+
+            <h5 style="line-height: 49.2px">Step 12:</h5>
+            <div class="row">
+                On dropping the folder you will see the data being uploaded:
+                <img src="./imgs/screenshots/angular_demo/img_12.png" alt="Data uploading" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+
+            <h5 style="line-height: 49.2px">Step 13:</h5>
+            <div class="row">
+                Once the deployment is complete, you will see the following page:
+                <img src="./imgs/screenshots/angular_demo/img_13.png" alt="Deployment complete" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+
+            <h5 style="line-height: 49.2px">Step 14:</h5>
+            <div class="row">
+                Click on the 'Site Overview' button to see more info about your site. You can find the deployed URL here. Note that netlify assigns a random name to your site, and the URL is based on this name. You can change this name later; we shall see this in step 16. Click on the URL.
+                <img src="./imgs/screenshots/angular_demo/img_14.png" alt="Site overview" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+
+            <h5 style="line-height: 49.2px">Step 15:</h5>
+            <div class="row">
+                We see the familiar page for using the visualizer that we had seen in step 4 above. Moreover, now this page is live on the internet!
+                <img src="./imgs/screenshots/angular_demo/img_15.png" alt="See page on server" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">Step 16:</h5>
+            <div class="row">
+                You can change the name of your site, and thereby its URL, by clicking on the 'Site configuration' button on the menu located on the left of the page. You can then change the name of your site by clicking on the 'Change site name' button:
+                <img src="./imgs/screenshots/angular_demo/img_16.png" alt="Change site name" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <div class="row">
+                You can share this URL with anyone and they can use the visualizer. You can also use this URL to embed the visualizer in another website.
+            </div>
+            
+            <br/><br/>
+              
+            <div class="rainbow-row">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <p class="text" style="margin: 25px 10px 10px 10px;">This project has received funding from the European
+                Union’s
+                Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreements No.
+                785907 and
+                No. 945539 (Human Brain Project SGA2 and SGA3).</p>
+            <p class="text" style="margin: 10px 10px 40px 10px;">If you encounter any problems, <a
+                    href="https://github.com/NeuralEnsemble/neo-viewer/issues/new" target="_blank"
+                    rel="noopener noreferrer">please let us know.</a></p>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="icon" href="favicon/Favicon_32x32.png">
+    <link rel="apple-touch-icon" href="favicon/Favicon_32x32.png">
+    <title>Neural Activity Visualizer - Guide - Plotly Interactivity</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/docco.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+
+<body>
+    <div>
+        <div class="container"><br>
+            <div class="box rounded centered" style="margin-top: 5px; padding-top: 0.75em; padding-bottom: 0.75em;"><a
+                    href="https://ebrains.eu/" target="_blank" rel="noopener noreferrer"
+                    class="waves-effect waves-light" style="text-align: center; color: black;">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td style="padding-top: 0px; padding-bottom: 0px;"><img class="ebrains-icon-small"
+                                        src="./imgs/ebrains_logo.svg" alt="EBRAINS logo" style="height: 60px;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </a>
+                <h5 class="title-style">Neural Activity Visualizer</h5>
+            </div>
+
+            <h5 style="text-align: center; line-height: 2; font-weight: bolder;">Quick overview of visualizer interactivity features</h5>
+
+            <div class="text" style="margin: 15px 35px 15px 35px;">
+                The visualizer offers various interactive features for exploring the data, courtesy of the underlying plotly.js library. These are briefly presented in this guide with examples.
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">1: Download plot as a png</h5>
+            <div class="row">
+                This allows you to download the current plot as a png file. This is useful for saving the plot for later use or for sharing it with others.
+                <img src="./imgs/screenshots/plotly_demo/img_01_download.gif" alt="Download plot" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">2: Zoom (select region of interest)</h5>
+            <div class="row">
+                This allows you to zoom in on a specific region of the plot. You can do this by clicking and dragging the mouse over the region of interest. To reset the plot to its original view, double-click on the plot.
+                <img src="./imgs/screenshots/plotly_demo/img_02_zoom.gif" alt="Zoom region" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">3: Pan</h5>
+            <div class="row">
+                This allows you to pan the plot in any direction. You can do this by clicking and dragging the mouse over the plot. To reset the plot to its original view, double-click on the plot.
+                <img src="./imgs/screenshots/plotly_demo/img_03_pan.gif" alt="Pan plot" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">4, 5: Zoom in / Zoom out</h5>
+            <div class="row">
+                This allows you to zoom in or out on the plot. You can do this by using the mouse scroll wheel. To reset the plot to its original view, double-click on the plot.
+                <img src="./imgs/screenshots/plotly_demo/img_04_05_zoom_in_out.gif" alt="Zoom_in_out" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">6: Autoscale</h5>
+            <div class="row">
+                This allows you to autoscale the plot. This is useful for resetting the plot to its original view after zooming or panning.
+                <img src="./imgs/screenshots/plotly_demo/img_06_autoscale.gif" alt="Autoscale plot" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">7: Reset axes</h5>
+            <div class="row">
+                This allows you to reset the axes of the plot. Similar to autoscale seen above, this is useful for resetting the plot to its original view after zooming or panning. The difference between this and autoscale is that autoscale resets the entire plot, while reset axes only resets the axes.
+                <img src="./imgs/screenshots/plotly_demo/img_07_reset.gif" alt="Reset plot" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">8: Toggle Spike Lines</h5>
+            <div class="row">
+                This allows you to toggle spike lines on and off. This is useful for visualizing the data in a different way. Spike lines refer to the vertical and horizontal lines that appear when you hover over a data point.
+                <img src="./imgs/screenshots/plotly_demo/img_08_toggle_lines.gif" alt="Toggle spike lines" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <h5 style="line-height: 49.2px">9, 10: Show closest data on hover / Compare data on hover</h5>
+            <div class="row">
+                This allows you to show the closest data point on hover and compare data points on hover. This is useful for visualizing the data values in a different way. You can do this by hovering over the data points on the plot. The compare feature is useful when you have multiple traces on the plot.
+                <img src="./imgs/screenshots/plotly_demo/img_09_10_labels.gif" alt="Download plot" style="width: 100%; padding: 15px;"/>
+                <br/>
+            </div>
+
+            <br/><br/>
+              
+            <div class="rainbow-row">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <p class="text" style="margin: 25px 10px 10px 10px;">This project has received funding from the European
+                Union’s
+                Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreements No.
+                785907 and
+                No. 945539 (Human Brain Project SGA2 and SGA3).</p>
+            <p class="text" style="margin: 10px 10px 40px 10px;">If you encounter any problems, <a
+                    href="https://github.com/NeuralEnsemble/neo-viewer/issues/new" target="_blank"
+                    rel="noopener noreferrer">please let us know.</a></p>
+        </div>
+    </div>
+</body>
+
+</html>
