@@ -23,8 +23,6 @@ export default defineConfig({
     },
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime',
-        '@mui/material', '@mui/icons-material',
-        '@emotion/react', '@emotion/styled',
         'plotly.js', 'react-plotly.js'],
     },
     sourcemap: true,

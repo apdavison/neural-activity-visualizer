@@ -1,0 +1,211 @@
+/* Neural Activity Visualizer — default styles */
+
+:root {
+    --nv-primary: #1976d2;
+    --nv-primary-text: #fff;
+    --nv-border-color: #bbb;
+    --nv-border-radius: 4px;
+    --nv-font-family: sans-serif;
+    --nv-font-size: 0.875rem;
+    --nv-spacing: 8px;
+    --nv-error-bg: #fdeded;
+    --nv-error-border: #f5c6cb;
+    --nv-error-color: #842029;
+    --nv-popover-bg: #fff;
+    --nv-popover-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Header layout */
+.nv-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--nv-spacing);
+    margin: calc(var(--nv-spacing) * 2);
+    font-family: var(--nv-font-family);
+    font-size: var(--nv-font-size);
+}
+
+/* Button group */
+.nv-button-group {
+    display: inline-flex;
+    border: 1px solid var(--nv-primary);
+    border-radius: var(--nv-border-radius);
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.nv-button-group .nv-button + .nv-button {
+    border-left: 1px solid var(--nv-primary);
+}
+
+.nv-button {
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    background: transparent;
+    color: var(--nv-primary);
+    font-family: var(--nv-font-family);
+    font-size: var(--nv-font-size);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nv-button:hover {
+    background: rgba(25, 118, 210, 0.08);
+}
+
+.nv-button--active {
+    background: var(--nv-primary);
+    color: var(--nv-primary-text);
+}
+
+.nv-button--active:hover {
+    background: var(--nv-primary);
+    opacity: 0.9;
+}
+
+/* Icon buttons */
+.nv-icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--nv-primary);
+    border-radius: 50%;
+    transition: background 0.2s;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+.nv-icon-button:hover {
+    background: rgba(25, 118, 210, 0.08);
+}
+
+.nv-icon-button svg {
+    display: block;
+}
+
+/* Spinner */
+@keyframes nv-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.nv-spinner {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--nv-border-color);
+    border-top-color: var(--nv-primary);
+    border-radius: 50%;
+    animation: nv-spin 0.8s linear infinite;
+    vertical-align: middle;
+    margin: var(--nv-spacing);
+}
+
+/* Form controls */
+.nv-form-control {
+    display: inline-flex;
+    flex-direction: column;
+    min-width: 120px;
+}
+
+.nv-label {
+    font-family: var(--nv-font-family);
+    font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 2px;
+}
+
+.nv-select {
+    border: 1px solid var(--nv-border-color);
+    border-radius: var(--nv-border-radius);
+    padding: 6px 8px;
+    font-family: var(--nv-font-family);
+    font-size: var(--nv-font-size);
+    background: #fff;
+    cursor: pointer;
+}
+
+.nv-select:focus {
+    outline: none;
+    border-color: var(--nv-primary);
+    box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+}
+
+/* Alert */
+.nv-alert {
+    padding: calc(var(--nv-spacing) * 1.5);
+    border-radius: var(--nv-border-radius);
+    font-family: var(--nv-font-family);
+    font-size: var(--nv-font-size);
+    margin: calc(var(--nv-spacing) * 2);
+}
+
+.nv-alert--error {
+    background: var(--nv-error-bg);
+    border: 1px solid var(--nv-error-border);
+    color: var(--nv-error-color);
+}
+
+/* Info container + popover */
+.nv-info-container {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.nv-popover {
+    position: absolute;
+    z-index: 1000;
+    background: var(--nv-popover-bg);
+    box-shadow: var(--nv-popover-shadow);
+    border-radius: var(--nv-border-radius);
+    padding: var(--nv-spacing);
+    min-width: 200px;
+    top: 100%;
+    left: 0;
+}
+
+/* List */
+.nv-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nv-list-item {
+    padding: calc(var(--nv-spacing) / 2) 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+}
+
+.nv-list-item:last-child {
+    border-bottom: none;
+}
+
+.nv-list-item__primary {
+    font-family: var(--nv-font-family);
+    font-size: var(--nv-font-size);
+    font-weight: 600;
+}
+
+.nv-list-item__secondary {
+    font-family: var(--nv-font-family);
+    font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* Inline icon in hint text */
+.nv-inline-icon {
+    display: inline-flex;
+    vertical-align: sub;
+}
