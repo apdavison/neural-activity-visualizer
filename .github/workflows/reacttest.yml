@@ -28,5 +28,8 @@ jobs:
       working-directory: js/react
       run: npm run build-lib
     - name: Run Tests
-      working-directory: js/react/demo
-      run: npm run test -- --watchAll=false
+      working-directory: js/react
+      run: npm test
+    - name: Build demo
+      working-directory: js/react
+      run: npm run build-demo
