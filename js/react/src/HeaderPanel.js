@@ -1,49 +1,37 @@
 import React from "react";
 
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Button from "@mui/material/Button";
-import TimelineIcon from "@mui/icons-material/Timeline";
-import ScatterPlotIcon from "@mui/icons-material/ScatterPlot";
-import Tooltip from "@mui/material/Tooltip";
-
-import IconButton from "@mui/material/IconButton";
-import InfoIcon from "@mui/icons-material/Info";
+import {
+    TimelineIcon,
+    ScatterPlotIcon,
+    InfoIcon,
+    GetAppIcon,
+} from "./icons";
 import InfoPanel from "./InfoPanel";
-import GetAppIcon from "@mui/icons-material/GetApp";
-
-import CircularProgress from "@mui/material/CircularProgress";
 
 function SegmentSelect(props) {
-    let menuItemAll = "";
+    let optionAll = null;
     if (props.consistent) {
-        menuItemAll = <MenuItem value={"all"}>All</MenuItem>;
+        optionAll = <option value="all">All</option>;
     }
     return (
-        <FormControl sx={{ margin: 1, minWidth: 120 }}>
-            <InputLabel id="select-segment-label">Segment</InputLabel>
-            <Select
-                labelId="select-segment-label"
+        <div className="nv-form-control">
+            <label className="nv-label" htmlFor="select-segment">
+                Segment
+            </label>
+            <select
+                className="nv-select"
                 id="select-segment"
                 value={props.labels[props.segmentId] ? props.segmentId : 0}
                 onChange={props.onChange}
-                label="Segment"
             >
-                {menuItemAll}
-                {props.labels.map((seg, index) => {
-                    return (
-                        <MenuItem key={index} value={index}>
-                            {seg.label}
-                        </MenuItem>
-                    );
-                })}
-            </Select>
-        </FormControl>
+                {optionAll}
+                {props.labels.map((seg, index) => (
+                    <option key={index} value={index}>
+                        {seg.label}
+                    </option>
+                ))}
+            </select>
+        </div>
     );
 }
 
@@ -56,26 +44,23 @@ function SignalSelect(props) {
     }
     if (props.show && props.labels[segmentId]) {
         return (
-            <FormControl sx={{ margin: 1, minWidth: 120 }}>
-                <InputLabel id="select-signal-label">Signal</InputLabel>
-                <Select
-                    labelId="select-signal-label"
+            <div className="nv-form-control">
+                <label className="nv-label" htmlFor="select-signal">
+                    Signal
+                </label>
+                <select
+                    className="nv-select"
                     id="select-signal"
                     value={props.signalId}
                     onChange={props.onChange}
-                    label="Signal"
                 >
-                    {props.labels[segmentId].signalLabels.map(
-                        (label, index) => {
-                            return (
-                                <MenuItem key={index} value={index}>
-                                    {label}
-                                </MenuItem>
-                            );
-                        }
-                    )}
-                </Select>
-            </FormControl>
+                    {props.labels[segmentId].signalLabels.map((label, index) => (
+                        <option key={index} value={index}>
+                            {label}
+                        </option>
+                    ))}
+                </select>
+            </div>
         );
     } else {
         return "";
@@ -84,19 +69,15 @@ function SignalSelect(props) {
 
 function LoadingAnimation(props) {
     if (props.loading) {
-        return (
-            <CircularProgress
-                sx={{ margin: 1, verticalAlign: "middle" }}
-                color="secondary"
-            />
-        );
+        return <span className="nv-spinner" aria-label="Loading" />;
     } else {
         return "";
     }
 }
 
 export default function HeaderPanel(props) {
-    const [popoverAnchor, setPopoverAnchor] = React.useState(null);
+    const infoContainerRef = React.useRef(null);
+    const [infoOpen, setInfoOpen] = React.useState(false);
 
     React.useEffect(() => {
         console.log(props);
@@ -139,50 +120,36 @@ export default function HeaderPanel(props) {
         }
     };
 
-    const handleShowInfo = (event) => {
-        setPopoverAnchor(event.currentTarget);
+    const handleShowInfo = () => {
+        setInfoOpen((prev) => !prev);
     };
 
     const handleHideInfo = () => {
-        setPopoverAnchor(null);
+        setInfoOpen(false);
     };
 
-    const infoOpen = Boolean(popoverAnchor);
-    const id = infoOpen ? "info-panel" : undefined;
     return (
-        <Box sx={{ margin: 2 }}>
+        <div className="nv-header">
             {!props.disableChoice && (
-                <ButtonGroup
-                    color="primary"
+                <div
+                    className="nv-button-group"
                     aria-label="outlined primary button group"
-                    sx={{ margin: 1, verticalAlign: "middle" }}
                 >
-                    <Tooltip
+                    <button
+                        className={`nv-button${props.showSignals ? " nv-button--active" : ""}`}
+                        onClick={() => handleChangeVisibility("signals")}
                         title={`${props.showSignals ? "Hide" : "Show"} signals`}
                     >
-                        <Button
-                            onClick={() => handleChangeVisibility("signals")}
-                            variant={`${props.showSignals ? "contained" : "outlined"
-                                }`}
-                        >
-                            <TimelineIcon />
-                        </Button>
-                    </Tooltip>
-                    <Tooltip
-                        title={`${props.showSpikeTrains ? "Hide" : "Show"
-                            } spiketrains`}
+                        <TimelineIcon />
+                    </button>
+                    <button
+                        className={`nv-button${props.showSpikeTrains ? " nv-button--active" : ""}`}
+                        onClick={() => handleChangeVisibility("spiketrains")}
+                        title={`${props.showSpikeTrains ? "Hide" : "Show"} spiketrains`}
                     >
-                        <Button
-                            onClick={() =>
-                                handleChangeVisibility("spiketrains")
-                            }
-                            variant={`${props.showSpikeTrains ? "contained" : "outlined"
-                                }`}
-                        >
-                            <ScatterPlotIcon />
-                        </Button>
-                    </Tooltip>
-                </ButtonGroup>
+                        <ScatterPlotIcon />
+                    </button>
+                </div>
             )}
             <SegmentSelect
                 segmentId={props.segmentId}
@@ -198,35 +165,35 @@ export default function HeaderPanel(props) {
                 show={props.showSignals}
             />
 
-            <Tooltip title="File metadata">
-                <IconButton
+            <div className="nv-info-container" ref={infoContainerRef}>
+                <button
+                    className="nv-icon-button"
                     onClick={handleShowInfo}
                     aria-label="info"
-                    sx={{ marginTop: 1, marginBottom: 1, verticalAlign: "middle" }}
+                    title="File metadata"
                 >
-                    <InfoIcon fontSize="medium" color="primary" />
-                </IconButton>
-            </Tooltip>
-            <InfoPanel
-                id={id}
-                source={props.source}
-                info={props.metadata}
-                open={infoOpen}
-                anchor={popoverAnchor}
-                onClose={handleHideInfo}
-            />
+                    <InfoIcon fontSize="medium" />
+                </button>
+                <InfoPanel
+                    id="info-panel"
+                    source={props.source}
+                    info={props.metadata}
+                    open={infoOpen}
+                    onClose={handleHideInfo}
+                    containerRef={infoContainerRef}
+                />
+            </div>
 
-            <Tooltip title="Download data file">
-                <IconButton
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={props.source}
-                    aria-label="download"
-                    sx={{ marginTop: 1, marginBottom: 1, verticalAlign: "middle" }}
-                >
-                    <GetAppIcon fontSize="medium" color="primary" />
-                </IconButton>
-            </Tooltip>
+            <a
+                className="nv-icon-button"
+                href={props.source}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="download"
+                title="Download data file"
+            >
+                <GetAppIcon fontSize="medium" />
+            </a>
 
             <LoadingAnimation loading={props.loading} />
             {!props.disableChoice &&
@@ -234,18 +201,16 @@ export default function HeaderPanel(props) {
                 !props.showSpikeTrains && (
                     <span>
                         Click signals (
-                        <TimelineIcon
-                            fontSize="small"
-                            style={{ verticalAlign: "sub" }}
-                        />
+                        <span className="nv-inline-icon">
+                            <TimelineIcon fontSize="small" />
+                        </span>
                         ) and/or spike trains (
-                        <ScatterPlotIcon
-                            fontSize="small"
-                            style={{ verticalAlign: "sub" }}
-                        />
+                        <span className="nv-inline-icon">
+                            <ScatterPlotIcon fontSize="small" />
+                        </span>
                         )
                     </span>
                 )}
-        </Box>
+        </div>
     );
 }
