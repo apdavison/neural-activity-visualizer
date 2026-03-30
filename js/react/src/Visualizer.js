@@ -80,6 +80,12 @@ export default function Visualizer(props) {
         new DataStore(props.source, props.baseUrl || defaultBaseUrl)
     );
     React.useEffect(() => {
+        datastore.current = new DataStore(props.source, props.baseUrl || defaultBaseUrl);
+        setSignalData([]);
+        setSpikeData([]);
+        setErrorMessage("");
+        setLabels([{ label: "Segment #0", signalLabels: ["Signal #0"] }]);
+
         if (props.segmentId) {
             setSegmentId(props.segmentId);
         }
@@ -113,9 +119,25 @@ export default function Visualizer(props) {
             })
             .then((res) => {
                 setConsistent(datastore.current.isConsistentAcrossSegments(0));
+
+                const segments = datastore.current.blocks[0].segments;
+                const validSegmentId = currentSegmentId === "all" || currentSegmentId < segments.length
+                    ? currentSegmentId
+                    : 0;
+
+                const segForCheck = currentSegmentId === "all" ? 0 : validSegmentId;
+                const seg = segments[segForCheck];
+                const signals = seg.as_prop || seg.analogsignals;
+                const validSignalId = currentSignalId < signals.length
+                    ? currentSignalId
+                    : 0;
+
+                setSegmentId(validSegmentId);
+                setSignalId(validSignalId);
+
                 updateGraphData(
-                    currentSegmentId,
-                    currentSignalId,
+                    validSegmentId,
+                    validSignalId,
                     currentShowSignals,
                     currentShowSpikeTrains
                 );
@@ -132,7 +154,7 @@ export default function Visualizer(props) {
                     );
                 }
             });
-    }, []);
+    }, [props.source]);
 
     function updateGraphData(
         newSegmentId,
