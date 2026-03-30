@@ -80,6 +80,8 @@ export default function Visualizer(props) {
         new DataStore(props.source, props.baseUrl || defaultBaseUrl)
     );
     React.useEffect(() => {
+        let cancelled = false;
+
         datastore.current = new DataStore(props.source, props.baseUrl || defaultBaseUrl);
         setSignalData([]);
         setSpikeData([]);
@@ -115,9 +117,13 @@ export default function Visualizer(props) {
             .initialize()
             .catch((err) => {
                 console.log(`Error initializing datastore: ${err}`);
-                setErrorMessage(`Unable to read data file (${err})`);
+                if (!cancelled) {
+                    setErrorMessage(`Unable to read data file (${err})`);
+                }
             })
             .then((res) => {
+                if (cancelled) return;
+
                 setConsistent(datastore.current.isConsistentAcrossSegments(0));
 
                 const segments = datastore.current.blocks[0].segments;
@@ -143,6 +149,7 @@ export default function Visualizer(props) {
                 );
             })
             .catch((err) => {
+                if (cancelled) return;
                 console.log(`Error after initializing datastore: ${err}`);
                 if (!props.source) {
                     setErrorMessage(
@@ -154,6 +161,8 @@ export default function Visualizer(props) {
                     );
                 }
             });
+
+        return () => { cancelled = true; };
     }, [props.source]);
 
     function updateGraphData(
