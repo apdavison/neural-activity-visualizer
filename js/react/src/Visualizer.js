@@ -75,6 +75,34 @@ export default function Visualizer(props) {
     });
     const [errorMessage, setErrorMessage] = React.useState("");
     const [loading, setLoading] = React.useState(false);
+    const [graphRanges, setGraphRanges] = React.useState(null);
+    const [spikeRanges, setSpikeRanges] = React.useState(null);
+
+    function handleGraphRelayout(eventData) {
+        if (eventData["xaxis.autorange"] || eventData["yaxis.autorange"]) {
+            setGraphRanges(null);
+        } else if (eventData["xaxis.range[0]"] !== undefined) {
+            setGraphRanges({
+                xRange: [eventData["xaxis.range[0]"], eventData["xaxis.range[1]"]],
+                yRange: eventData["yaxis.range[0]"] !== undefined
+                    ? [eventData["yaxis.range[0]"], eventData["yaxis.range[1]"]]
+                    : (graphRanges && graphRanges.yRange) || null,
+            });
+        }
+    }
+
+    function handleSpikeRelayout(eventData) {
+        if (eventData["xaxis.autorange"] || eventData["yaxis.autorange"]) {
+            setSpikeRanges(null);
+        } else if (eventData["xaxis.range[0]"] !== undefined) {
+            setSpikeRanges({
+                xRange: [eventData["xaxis.range[0]"], eventData["xaxis.range[1]"]],
+                yRange: eventData["yaxis.range[0]"] !== undefined
+                    ? [eventData["yaxis.range[0]"], eventData["yaxis.range[1]"]]
+                    : (spikeRanges && spikeRanges.yRange) || null,
+            });
+        }
+    }
 
     const datastore = React.useRef(
         new DataStore(props.source, props.baseUrl || defaultBaseUrl)
@@ -315,6 +343,8 @@ export default function Visualizer(props) {
                 show={showSignals}
                 width={props.width}
                 height={props.height}
+                ranges={graphRanges}
+                onRelayout={handleGraphRelayout}
             />
             <SpikeTrainPanel
                 data={spikeData}
@@ -322,6 +352,8 @@ export default function Visualizer(props) {
                 show={showSpikeTrains}
                 width={props.width}
                 height={props.height}
+                ranges={spikeRanges}
+                onRelayout={handleSpikeRelayout}
             />
         </div>
     );
